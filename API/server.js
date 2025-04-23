@@ -3,9 +3,16 @@ import mongoose from "mongoose";
 import userRouter from './routes/User.js'
 import bodyParser from "express";
 import recipeRouter from './routes/recipe.js'
+import cors from 'cors'
+
 const app = express();
 
 app.use(bodyParser.json())
+app.use(cors({
+    origin:true,
+    methods:["GET","POST","PUT","DELETE"],
+    credentials:true
+}))
 
 // userRouter
 app.use('/api', userRouter)

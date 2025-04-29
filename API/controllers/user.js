@@ -1,6 +1,6 @@
 import {User} from '../Models/User.js'
 import bcrypt from 'bcryptjs'
-import { request } from 'express'
+// import { request } from 'express'
 import jwt from 'jsonwebtoken'
 
 
@@ -11,7 +11,7 @@ export const register = async (req,res)=>{
     try{
         let user = await User.findOne({gmail})
 
-        if (user) return res.json({messsage:"User Already Registered"});
+        if (user) return res.json({message:"User Already Registered"});
         
         const hashPass = await bcrypt.hash(password,10)
 

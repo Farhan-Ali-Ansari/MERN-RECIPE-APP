@@ -1,6 +1,44 @@
-import React from "react";
+
+import React, { useContext, useState } from "react";
+import { AppContext } from "../context/App_Context";
+import { ToastContainer, toast, Bounce } from "react-toastify";
+import {useNavigate} from "react-router-dom";
 
 const Register = () => {
+  const navigate = useNavigate()
+    const { Register } = useContext(AppContext);
+    const [gmail, setgmail] = useState("");
+    const [name, setname] = useState("");
+    const [password, setpassword] = useState("");
+
+    const registerHandler = async (e) => {
+        e.preventDefault();
+        const result = await Register(name, gmail, password);
+        
+        toast.success(result.data.message, {
+          position: "top-right",
+          autoClose: 1000,
+          hideProgressBar: false,
+          closeOnClick: false,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "dark",
+          transition: Bounce,
+        });
+
+        console.log(result.data);
+
+        if(result.data.message !== 'User Already exist'){
+          setTimeout(() => {
+            navigate('/login')
+          }, 1500);
+        }
+
+
+       
+      };
+
   return (
     <>
       <div
@@ -12,7 +50,7 @@ const Register = () => {
         }}
       >
         <h2 className="text-center">Sign Up</h2>
-        <form
+        <form onSubmit={registerHandler}
           style={{
             width: "420px",
             margin: "auto",
@@ -24,6 +62,9 @@ const Register = () => {
               Name
             </label>
             <input
+            value={name}
+            onChange={(e)=>setname(e.target.value)}
+            required
               type="text"
               className="form-control"
               id="exampleInputEmail1"
@@ -31,13 +72,16 @@ const Register = () => {
             />
           </div>
           <div className="mb-3">
-            <label htmlFor="exampleInputEmail1" className="form-label">
+            <label htmlFor="exampleInputEmail2" className="form-label">
               Email
             </label>
             <input
+            value={gmail}
+            onChange={(e)=>setgmail(e.target.value)}
+            required
               type="email"
               className="form-control"
-              id="exampleInputEmail1"
+              id="exampleInputEmail2"
               aria-describedby="emailHelp"
             />
           </div>
@@ -46,6 +90,9 @@ const Register = () => {
               Password
             </label>
             <input
+            value={password}
+            onChange={(e)=>setpassword(e.target.value)}
+            required
               type="password"
               className="form-control"
               id="exampleInputPassword1"

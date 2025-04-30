@@ -4,13 +4,13 @@ import mongoose from "mongoose";
 const recipeSchema = new mongoose.Schema({
     title:{
         type: String,
-        require: true,
+        required: true,
 
     }
     ,
     ist:{
         type: String,
-        require: true,
+        required: true,
         
     }
     ,
@@ -24,7 +24,7 @@ const recipeSchema = new mongoose.Schema({
     qty3:{type:String},
     qty4:{type:String},
     
-    imgurl:{type:String,require:true},
+    imgurl:{type:String,required:true},
     user: {
         type:mongoose.Schema.Types.ObjectId,
         ref:"user"

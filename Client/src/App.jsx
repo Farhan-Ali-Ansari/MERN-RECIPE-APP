@@ -21,7 +21,7 @@ function App() {
       <Route path='/Register' element={<Register />} />
       <Route path='/Profile' element={<Profile />} />
       <Route path='/AddRecipe' element={<AddRecipe/>}/>
-      <Route path='/:id' element={<Details/>}/>
+      <Route path='/Home/:id' element={<Details/>}/>
     
       <Route path='/saved' element={<Saved />} />
     

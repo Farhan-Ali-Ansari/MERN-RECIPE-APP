@@ -1,11 +1,11 @@
 import { Recipe} from '../Models/recipe.js'
 import {SavedRecipe} from '../Models/SavedRecipe.js'
 export const add = async(req,res)=>{
-    const{title,inst,ing1,ing2,ing3,ing4,qty1,qty2,qty3,qty4,imgurl} = req.body;
+    const{title,ist,ing1,ing2,ing3,ing4,qty1,qty2,qty3,qty4,imgurl} = req.body;
 
     try{
         const recipe = await Recipe.create({title,
-            inst,ing1,ing2,ing3,ing4,qty1,qty2,qty3,qty4
+            ist,ing1,ing2,ing3,ing4,qty1,qty2,qty3,qty4
             ,imgurl
         ,user: req.user});
             res.json({message:"Recipe Made Successfully", recipe})
